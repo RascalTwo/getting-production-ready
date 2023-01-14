@@ -120,4 +120,4 @@ app.route('/api/counter')
 
 //#endregion Counter Routes
 
-app.listen(PORT);
+app.listen(PORT, () => console.log(`Listening at https://localhost:${PORT}/`));
