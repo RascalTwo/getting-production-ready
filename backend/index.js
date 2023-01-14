@@ -10,6 +10,9 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 
 
+const PORT = process.env.PORT || 3000;
+
+
 let db;
 MongoClient.connect('mongodb://localhost:27017/database-name').then(client => {
 	db = client.db('database-name');
@@ -117,4 +120,4 @@ app.route('/api/counter')
 
 //#endregion Counter Routes
 
-app.listen(3000);
+app.listen(PORT);
