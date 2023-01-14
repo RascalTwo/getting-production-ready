@@ -1,5 +1,5 @@
 function fetchAPI(path, init) {
-	return fetch('http://localhost:3000/api' + path, { credentials: 'include', ...init }).then(res => {
+	return fetch('/api' + path, { credentials: 'include', ...init }).then(res => {
 		if (res.ok) return res.json();
 		else res.text().then(text => {
 			throw new Error(`${res.status}: ${res.statusText} - ${text}`);
