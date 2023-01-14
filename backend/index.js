@@ -11,11 +11,13 @@ import { Strategy as LocalStrategy } from 'passport-local';
 
 
 const PORT = process.env.PORT || 3000;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/database-name';
+const DB_NAME = MONGODB_URI.split('/').at(-1).split('?')[0];
 
 
 let db;
-MongoClient.connect('mongodb://localhost:27017/database-name').then(client => {
-	db = client.db('database-name');
+MongoClient.connect(MONGODB_URI).then(client => {
+	db = client.db(DB_NAME);
 });
 
 //#region Passport
@@ -55,7 +57,7 @@ app.use(session({
 	secret: 'secret',
 	resave: false,
 	saveUninitialized: true,
-	store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/database-name' })
+	store: MongoStore.create({ mongoUrl: MONGODB_URI })
 }));
 app.use(flash());
 app.use(passport.initialize());
