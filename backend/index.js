@@ -2,7 +2,6 @@ import path from 'path';
 
 import express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
-import cors from 'cors';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import flash from 'connect-flash';
@@ -48,10 +47,6 @@ MongoClient.connect(MONGODB_URI).then(client => {
 
 	app.use(express.static(path.join('public')));
 	app.use(express.json());
-	app.use(cors({
-		origin: 'http://127.0.0.1:5173',
-		credentials: true,
-	}));
 
 	app.use(session({
 		secret: 'secret',
