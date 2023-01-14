@@ -2,5 +2,15 @@
   "name": "production-ready",
   "version": "1.0.0",
   "scripts": {
+    "start": "npm run start --workspace=backend",
+    "build": "npm run build --workspace=frontend",
+    "dev": "concurrently \"npm run dev --workspace=backend\" \"npm run dev --workspace=frontend\""
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "dependencies": {
+    "concurrently": "^7.6.0"
   }
 }
